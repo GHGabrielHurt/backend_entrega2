@@ -50,5 +50,35 @@
       "img/default.jpg"
     ],
     "id": "1747437072727"
+  },
+  {
+    "title": "mesa",
+    "description": "mesa de living",
+    "code": "454",
+    "price": "45124",
+    "stock": "4",
+    "category": "muebles",
+    "images": "fsdfsdf",
+    "id": "1747506552461"
+  },
+  {
+    "title": "asd",
+    "description": "sd",
+    "code": "025",
+    "price": "3434",
+    "stock": "453",
+    "category": "bazar",
+    "images": "dsfsdf",
+    "id": "1747507893019"
+  },
+  {
+    "title": "test1",
+    "description": "sdfsd",
+    "code": "432",
+    "price": "43",
+    "stock": "34",
+    "category": "ds",
+    "images": "asdasd",
+    "id": "1747508965652"
   }
 ]
