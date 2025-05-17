@@ -7,11 +7,7 @@ const cartManager = new CartManager();
 
 module.exports = (io) => {
   const router = express.Router();
-  // Vista administrador de productos
-//router.get('/adm-producto', async (req, res) => {
-//  const productos = await productManager.cargarProductos();
-//  res.render('adm-producto', { productos });
-//});
+
 // Crear producto
 router.post('/adm-producto', async (req, res) => {
   const data = req.body;

@@ -1,6 +1,6 @@
 <h1>Administrador de Productos</h1>
 
-<h2>{{#if producto}}✏️ Editar producto{{else}}➕ Agregar producto{{/if}}</h2>
+<h2>{{#if producto}} Editar producto{{else}} Agregar producto{{/if}}</h2>
 
 <form action="{{#if producto}}/adm-producto/update/{{producto.id}}{{else}}/adm-producto{{/if}}" method="POST">
   <input name="title" placeholder="Nombre" value="{{producto.title}}" required />
@@ -10,7 +10,7 @@
   <input name="stock" type="number" placeholder="Stock" value="{{producto.stock}}" required />
   <input name="category" placeholder="Categoría" value="{{producto.category}}" />
   <input name="images" placeholder="URL de imagen" value="{{producto.images}}" />
-  <button type="submit">{{#if producto}}💾 Guardar cambios{{else}}Agregar{{/if}}</button>
+  <button type="submit">{{#if producto}} Guardar cambios{{else}}Agregar{{/if}}</button>
 </form>
 <table border="1" cellpadding="5">
   <thead>
@@ -33,7 +33,7 @@
           </form>
          <form action="/adm-producto" method="GET" style="display:inline;">
   <input type="hidden" name="edit" value="{{this.id}}" />
-  <button type="submit">✏️ Editar</button>
+  <button type="submit">Editar</button>
 </form>
         </td>
       </tr>

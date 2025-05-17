@@ -46,7 +46,7 @@ class ProductManager {
     this.products[index] = {
       ...this.products[index],
       ...datosActualizados,
-      id: this.products[index].id, // asegurar que no se cambie el ID
+      id: this.products[index].id, // asegurarme que no se cambie el ID
     };
 
     await this.guardarProductos();
