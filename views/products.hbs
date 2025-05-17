@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>Lista de Productos</title>
+  <script src="/socket.io/socket.io.js"></script>
+</head>
+<body>
+  
+  <h1>Productos disponibles</h1>
+  <button onclick="window.location.href='/cart/{{cartId}}'">Ir al carrito</button>
+<ul>
+  {{#each products}}
+    <li>
+      <strong>{{this.title}}</strong> <br />
+      Descripción: {{this.decription}} <br />
+      Código: {{this.code}} <br />
+      Precio: ${{this.price}} <br />
+      Estado: {{this.status}} <br />
+      Stock: {{this.stock}} <br />
+      Categoría: {{this.category}} <br />
+      <img src="{{this.images.[0]}}" alt="{{this.title}}" width="100" /> <br />
+      <button onclick="agregarAlCarrito('{{this.id}}')">Agregar al carrito</button>
+    </li>
+  {{/each}}
+</ul>
+<h2>Carrito</h2>
+<button onclick="finalizarCompra()">Finalizar compra</button>
+<div id="carrito">
+  {{#if cart.products.length}}
+    <ul id="lista-carrito">
+      {{#each cart.products}}
+        <li>
+          <strong>{{this.title}}</strong> - Cantidad: {{this.quantity}} | Precio: ${{this.price}} | Subtotal: ${{this.subtotal}}
+        </li>
+      {{/each}}
+    </ul>
+    <p id="total-carrito"><strong>Total:</strong> ${{cart.total}}</p>
+  {{else}}
+    <p id="carrito-vacio">El carrito está vacío.</p>
+  {{/if}}
+</div>
+
+ <script>
+  const socket = io();
+
+  function agregarAlCarrito(productId) {
+    socket.emit('agregarProductoAlCarrito', { productId });
+    alert('Producto agregado al carrito');
+  }
+
+  socket.on('carritoActualizado', (carrito) => {
+    const contenedor = document.getElementById('carrito');
+    if (!contenedor) return; // si ell contenedor no existe, salimos sin hacer nada
+
+    let lista = document.getElementById('lista-carrito');
+    const vacio = document.getElementById('carrito-vacio');
+
+    if (vacio) vacio.remove();
+
+    // Si no existe la lista, la creamos
+    if (!lista) {
+      lista = document.createElement('ul');
+      lista.id = 'lista-carrito';
+      contenedor.appendChild(lista);
+    } else {
+      lista.innerHTML = '';
+    }
+
+    carrito.products.forEach(p => {
+      const li = document.createElement('li');
+      li.innerHTML = `<strong>${p.title}</strong> - Cantidad: ${p.quantity} | Precio: $${p.price} | Subtotal: $${p.subtotal}`;
+      lista.appendChild(li);
+    });
+
+    // Mostrar total
+    let totalEl = document.getElementById('total-carrito');
+    if (!totalEl) {
+      totalEl = document.createElement('p');
+      totalEl.id = 'total-carrito';
+      contenedor.appendChild(totalEl);
+    }
+    totalEl.innerHTML = `<strong>Total:</strong> $${carrito.total}`;
+  });
+
+  function finalizarCompra() {
+  fetch('/finalizar', {
+    method: 'POST'
+  })
+  .then(() => {
+    alert(' Compra finalizada');
+    window.location.href = '/'; 
+  })
+  .catch(err => {
+    console.error('Error al finalizar compra:', err);
+    alert('Ocurrió un error al finalizar la compra');
+  });
+}
+
+</script>
+
+</body>
+</html>

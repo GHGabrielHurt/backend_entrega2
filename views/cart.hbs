@@ -1,0 +1,29 @@
+<script>
+  const socket = io();
+
+  function agregarAlCarrito(productId) {
+    socket.emit('agregarProductoAlCarrito', { productId });
+  }
+
+  socket.on('carritoActualizado', (carrito) => {
+    // Actualizar la lista de productos del carrito en la página
+    // Podés reconstruir el HTML o actualizar el DOM con JS
+
+    const lista = document.querySelector('#lista-carrito');
+    if (!lista) return;
+
+    if (carrito.products.length === 0) {
+      lista.innerHTML = '<p>El carrito está vacío.</p>';
+      return;
+    }
+
+    let html = '';
+    carrito.products.forEach(p => {
+      html += `<li><strong>${p.title}</strong> - Cantidad: ${p.quantity} | Precio: $${p.price} | Subtotal: $${p.subtotal}</li>`;
+    });
+
+    html += `<p><strong>Total:</strong> $${carrito.total}</p>`;
+
+    lista.innerHTML = html;
+  });
+</script>

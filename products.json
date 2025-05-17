@@ -1,0 +1,54 @@
+[
+  {
+    "title": "transistor1",
+    "decription": "transistor npn",
+    "code": "ED01124",
+    "price": 100,
+    "status": "true",
+    "stock": 50,
+    "category": "componentes",
+    "images": [
+      "img/test1.jpg"
+    ],
+    "id": "1744641544654"
+  },
+  {
+    "title": "transistor2",
+    "decription": "transistor npn",
+    "code": "ED01124",
+    "price": 100,
+    "status": "true",
+    "stock": 50,
+    "category": "componentes",
+    "images": [
+      "img/test1.jpg"
+    ],
+    "id": "1744641593317"
+  },
+  {
+    "title": "resitencia",
+    "decription": "resistencia de 10omns",
+    "code": "ad2254",
+    "price": 200,
+    "status": "true",
+    "stock": 5,
+    "category": "componentes",
+    "images": [
+      "img/default.jpg"
+    ],
+    "id": "1744641925695"
+  },
+  {
+    "title": "taza",
+    "description": "taza de ceramica",
+    "code": "122",
+    "price": 2000,
+    "status": "true",
+    "stock": 10,
+    "category": "bazar",
+    "images": [
+      "img/default.jpg"
+    ],
+    "id": "1747437072727"
+  }
+]
